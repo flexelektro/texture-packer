@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="dist/rectpack.js" type="text/javascript"></script>
+    <style type="text/css">
+    div{
+    	position:absolute;
+    }
+    </style>
+
+
+</head>
+<body>
+<div id="container">
+
+
+</div>
+
+<script type="text/javascript">
+    var container = document.getElementById("container");
+    var elements = [];
+    function makeRandom255(){
+        return (parseInt(Math.random()*255) + "," + parseInt(Math.random()*255) + "," + parseInt(Math.random()*255) + ",1");
+    }
+    for(var i = 0; i < 5; i++){
+
+        var el =  document.createElement("div");
+        el.style.width = (80 +Math.random()*130)+"px";
+        el.style.height = (80 +Math.random()*130)+"px";
+
+
+
+        el.style.backgroundColor = "rgba("+makeRandom255()+")";
+        el.style.position = "absolute";
+        el.style.border = "0px solid red";
+        //el.innerHTML = ""+i;
+
+
+        container.appendChild(el);
+        elements.push({
+            "el":el,
+            "id":i,
+            "width":el.style.width,
+            "height":el.style.height
+        });
+    }
+
+    for(var i = 0; i < 600; i++){
+
+       var el =  document.createElement("div");
+            el.style.width = (3 +Math.random()*30)+"px";
+            el.style.height = (3 +Math.random()*30)+"px";
+            el.style.backgroundColor = "rgba("+makeRandom255()+")";
+            el.style.position = "absolute";
+            el.style.border = "0px solid red";
+        //el.innerHTML = ""+i;
+
+
+        container.appendChild(el);
+        elements.push({
+            "el":el,
+            "id":i,
+            "width":el.style.width,
+            "height":el.style.height
+        });
+    }
+    var els = RP(elements,{
+        padding:0
+
+    });
+    console.log(els);
+    els.elements.forEach(function(obj){
+        console.log(obj);
+        obj.el.style.top = obj.y + "px";
+        obj.el.style.left = obj.x + "px";
+    });
+</script>
+</body>
+</html>

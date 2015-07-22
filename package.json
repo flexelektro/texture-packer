@@ -1,0 +1,27 @@
+{
+  "name": "rectangle-packer",
+  "version": "1.0.0",
+  "description": "A very fast bin-packing algorithm. Good for creating sprite-sheets and texture-atlases.",
+  "main": "rectpack,js",
+  "keywords": [
+    "bin-packing",
+    "spritesheet",
+    "atlas",
+    "js",
+    "algorithm"
+  ],
+  "author": "felix deimling",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babelify": "^6.1.3",
+    "browserify": "^10.2.4",
+    "parallelshell": "^1.2.0",
+    "uglify-js": "^2.4.23",
+    "watch": "^0.16.0"
+  },
+  "scripts": {
+    "uglify": "uglifyjs dist/rectpack.js --compress --mangle --dead_code  -o dist/rectpack.min.js",
+    "build": "watchify -t [babelify --stage 0]  -d --s RP src/RectanglePacker.js  -o dist/rectpack.js -v"
+  }
+}
