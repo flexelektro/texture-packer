@@ -2,7 +2,7 @@
 <html>
 <head>
     <title></title>
-    <script src="dist/rectpack.js" type="text/javascript"></script>
+    <script src="dist/rectpackforbrowser.js" type="text/javascript"></script>
     <style type="text/css">
     div{
     	position:absolute;
@@ -26,7 +26,7 @@
     for(var i = 0; i < 5; i++){
 
         var el =  document.createElement("div");
-        el.style.width = (80 +Math.random()*130)+"px";
+        el.style.width = (800 +Math.random()*130)+"px";
         el.style.height = (80 +Math.random()*130)+"px";
 
 
@@ -67,7 +67,6 @@
     }
     var els = RP(elements,{
         padding:0
-
     });
     console.log(els);
     els.elements.forEach(function(obj){

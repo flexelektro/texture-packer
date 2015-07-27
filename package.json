@@ -1,8 +1,8 @@
 {
   "name": "rectpack",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "A very fast bin-packing algorithm. Good for creating sprite-sheets and texture-atlases.",
-  "main": "rectpack,js",
+  "main": "dist/RectanglePacker.js",
   "keywords": [
     "bin-packing",
     "spritesheet",
@@ -14,14 +14,22 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "babel": "^5.8.3",
     "babelify": "^6.1.3",
     "browserify": "^10.2.4",
+    "browserify-derequire": "^0.9.4",
+    "derequire": "^2.0.0",
+    "exorcist": "^0.4.0",
     "parallelshell": "^1.2.0",
     "uglify-js": "^2.4.23",
-    "watch": "^0.16.0"
+    "watch": "^0.16.0",
+    "webpack": "^1.10.3"
   },
   "scripts": {
-    "uglify": "uglifyjs dist/rectpack.js --compress --mangle --dead_code  -o dist/rectpack.min.js",
-    "build": "watchify -t [babelify --stage 0]  -d --s RP src/RectanglePacker.js  -o dist/rectpack.js -v"
+    "uglify": "uglifyjs dist/rectpack.js --compress --mangle --dead_code --source-map dist/rectpack.min.js.map  -o dist/rectpack.min.js",
+    "ugly2": "uglifyjs --compress --mangle -o ./dist/rectpack.min.js ./dist/rectpack.js",
+    "build": "babel --stage 1 ./src --out-dir ./dist",
+    "build4browser": "browserify -t [babelify --stage 1]  -e ./src/RectanglePacker.js -s RP -o ./dist/rectpackforbrowser.js",
+    "build4node": "browserify -t [babelify --stage 1]  -e ./src/RectanglePacker.js --node  -o ./dist/rectpackfornode.js"
   }
 }

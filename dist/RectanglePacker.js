@@ -1,9 +1,9 @@
-var Algo = require("./BinPackingAlgorithm");
+"use strict";
 
+var Algo = require("./BinPackingAlgorithm");
 
 var RP = function RP(elements, confobj) {
     var RP = function RP(els, conf) {
-
         var elements = els.length > 0 && els instanceof Array ? els : console.error("No Elements my friend");
         var conf = conf || {};
         var config = {
@@ -44,26 +44,12 @@ var RP = function RP(elements, confobj) {
                 });
             }
             var area = 0;
-
-            var maxW = sortedElements.reduce(function(prev,curr){
-                return ( (curr.width > prev.width )? curr : prev );
-            },{width:0}).width;
-
-            var maxH = sortedElements.reduce(function(prev,curr){
-                return ( (curr.height > prev.height) ? curr : prev );
-            },{height:0}).height;
-
             sortedElements.forEach(function (el, idx) {
                 var elarea = el.width * el.height;
                 area += elarea;
             });
-            area *= 1.3;
-            var sidelength1 = Math.sqrt(area);
-            var sidelength2 = Math.max(maxH,maxW);
-
-
-
-            var sidelength = Math.max(sidelength1,sidelength2);
+            area *= 1.1;
+            var sidelength = Math.sqrt(area);
 
             var theData = new Algo(sortedElements, sidelength, sidelength);
 

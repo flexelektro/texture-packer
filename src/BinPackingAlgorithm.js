@@ -22,6 +22,7 @@ var BinPackingAlgorithm = function(blocks,w,h){
     }
 
     this.findNode = function(root,w,h){
+        console.log(root);
         if (root.used)
             return this.findNode(root.right, w, h) || this.findNode(root.down, w, h);
         else if ((w <= root.w) && (h <= root.h))
@@ -77,7 +78,7 @@ var BinPackingAlgorithm = function(blocks,w,h){
     }
 
     this.growDown = function(node,w,h){
-        var newNode = {
+        var newNode =  {
             "used":true,
             "x":0,
             "y":0,
