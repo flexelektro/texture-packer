@@ -44,28 +44,20 @@ var RP = function RP(elements, confobj) {
                 });
             }
             var area = 0;
-
-            var maxW = sortedElements.reduce(function(prev,curr){
-                return ( (curr.width > prev.width )? curr : prev );
-            },{width:0}).width;
-
-            var maxH = sortedElements.reduce(function(prev,curr){
-                return ( (curr.height > prev.height) ? curr : prev );
-            },{height:0}).height;
-
+            var maxwidth = 0;
+            var maxheight = 0;
             sortedElements.forEach(function (el, idx) {
+                maxheight = el.height > maxheight ? el.height : maxheight;
+                maxwidth = el.width > maxwidth ? el.width : maxwidth;
                 var elarea = el.width * el.height;
                 area += elarea;
             });
             area *= 1.3;
-            var sidelength1 = Math.sqrt(area);
-            var sidelength2 = Math.max(maxH,maxW);
+            var sidelength = Math.sqrt(area);
+            var wl = maxwidth > sidelength ? maxwidth : sidelength;
+            var wh = maxheight > sidelength ? maxheight : sidelength;
 
-
-
-            var sidelength = Math.max(sidelength1,sidelength2);
-
-            var theData = new Algo(sortedElements, sidelength, sidelength);
+            var theData = new Algo(sortedElements, wl, wh);
 
             var els = theData.elements;
             els.forEach(function (el) {
