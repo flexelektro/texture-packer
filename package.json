@@ -1,6 +1,6 @@
 {
   "name": "rectpack",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A very fast bin-packing algorithm. Good for creating sprite-sheets and texture-atlases.",
   "main": "dist/RectanglePacker.js",
   "keywords": [

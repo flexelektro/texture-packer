@@ -4,6 +4,7 @@ var Algo = require("./BinPackingAlgorithm");
 
 var RP = function RP(elements, confobj) {
     var RP = function RP(els, conf) {
+
         var elements = els.length > 0 && els instanceof Array ? els : console.error("No Elements my friend");
         var conf = conf || {};
         var config = {
@@ -44,14 +45,20 @@ var RP = function RP(elements, confobj) {
                 });
             }
             var area = 0;
+            var maxwidth = 0;
+            var maxheight = 0;
             sortedElements.forEach(function (el, idx) {
+                maxheight = el.height > maxheight ? el.height : maxheight;
+                maxwidth = el.width > maxwidth ? el.width : maxwidth;
                 var elarea = el.width * el.height;
                 area += elarea;
             });
-            area *= 1.1;
+            area *= 1.3;
             var sidelength = Math.sqrt(area);
+            var wl = maxwidth > sidelength ? maxwidth : sidelength;
+            var wh = maxheight > sidelength ? maxheight : sidelength;
 
-            var theData = new Algo(sortedElements, sidelength, sidelength);
+            var theData = new Algo(sortedElements, wl, wh);
 
             var els = theData.elements;
             els.forEach(function (el) {
